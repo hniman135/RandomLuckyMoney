@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Money Generator with Animated Result</title>
+<style>
+    body {
+        background-image: url('bg.jpg'); /* Đường dẫn đến hình nền */
+        background-size: cover; /* Hiển thị hình nền theo kích thước của cửa sổ trình duyệt */
+        background-position: center; /* Căn chỉnh hình nền vào giữa */
+        background-repeat: no-repeat; /* Không lặp lại hình nền */
+    }
+
+    .container {
+        text-align: center;
+        margin-top: 100px;
+    }
+    #randomNumber {
+        font-size: 24px;
+    }
+    #generateButton {
+        margin-top: 20px;
+    }
+    .large-number {
+        font-size: 36px;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Random Money Generator with Animated Result</h2>
+    <button onclick="startRandomAnimation()" id="generateButton">Generate Random Money</button>
+    <p id="randomNumber"></p>
+</div>
+
+<script>
+var originalMoneyWithWeights = [
+    {money: "10,000 đồng", weight: 20},
+    {money: "20,000 đồng", weight: 20},
+    {money: "30,000 đồng", weight: 20},
+    {money: "40,000 đồng", weight: 20},
+    {money: "50,000 đồng", weight: 10},
+    {money: "60,000 đồng", weight: 5},
+    {money: "70,000 đồng", weight: 4},
+    {money: "80,000 đồng", weight: 2},
+    {money: "90,000 đồng", weight: 1}
+];
+
+function startRandomAnimation() {
+    var randomNumberDisplay = document.getElementById("randomNumber");
+    
+    var moneyWithWeights = originalMoneyWithWeights.slice(); // Sao chép danh sách ban đầu
+    
+    var totalWeight = 0;
+    moneyWithWeights.forEach(function(item) {
+        totalWeight += item.weight;
+    });
+    
+    var intervalId;
+    var animationTime = 3000;
+    var startTime = new Date().getTime();
+    
+    intervalId = setInterval(function() {
+        var currentTime = new Date().getTime();
+        var elapsedTime = currentTime - startTime;
+        if (elapsedTime >= animationTime) {
+            clearInterval(intervalId);
+            var randomMoney = weightedRandom(moneyWithWeights, totalWeight);
+            randomNumberDisplay.innerHTML = "Random Money: <span class='large-number'>" + randomMoney + "</span>";
+        } else {
+            var randomMoney = weightedRandom(moneyWithWeights, totalWeight);
+            randomNumberDisplay.innerHTML = "Random Money: <span class='large-number'>" + randomMoney + "</span>";
+        }
+    }, 100);
+}
+
+function weightedRandom(items, totalWeight) {
+    var rand = Math.random() * totalWeight;
+    for (var i = 0; i < items.length; i++) {
+        if (rand < items[i].weight) {
+            var selectedMoney = items[i].money;
+            // Reset lại tỷ lệ
+            items.forEach(function(item) {
+                item.weight = originalMoneyWithWeights.find(x => x.money === item.money).weight;
+            });
+            return selectedMoney;
+        }
+        rand -= items[i].weight;
+    }
+}
+</script>
+
+</body>
+</html>
