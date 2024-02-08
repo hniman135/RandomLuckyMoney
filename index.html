@@ -70,19 +70,11 @@ var tempMoneyWithWeights = [
     {money: "90,000 đồng", weight: 30}
 ];
 
-function resetWeights() {
-    // Lặp qua mảng tempMoneyWithWeights và đặt lại trọng số cho từng phần tử
-    for (var i = 0; i < tempMoneyWithWeights.length; i++) {
-        tempMoneyWithWeights[i].weight = originalMoneyWithWeights[i].weight;
-    }
-}
 
 function startRandomAnimation() {
     var randomNumberDisplay = document.getElementById("randomNumber");
     var hihiText = document.getElementById("hihiText");
     
-    // Reset trọng số về giá trị ban đầu
-    resetWeights();
     
     // Sử dụng mảng tempMoneyWithWeights cho hiệu ứng
     var moneyWithWeights = tempMoneyWithWeights.slice();
