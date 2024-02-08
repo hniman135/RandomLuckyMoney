@@ -43,6 +43,7 @@
     <button onclick="startRandomAnimation()" id="generateButton">Chơi đe bạn eyyy</button>
     <p id="randomNumber"></p>
     <p id="hihiText" class="hihi"></p> <!-- Thêm một phần tử p để hiển thị "hihi" -->
+    <img id="gifImage" src="" alt="GIF">
 </div>
 
 <script>
@@ -92,6 +93,7 @@ function startRandomAnimation() {
             randomNumberDisplay.innerHTML = "Số tiền làaaaa: <span class='large-number'>" + randomMoney + "</span>";
             var hihi = mapToHihi(randomMoney);
             hihiText.innerText = hihi;
+            
         } else {
             var randomMoney = weightedRandom(moneyWithWeights, totalWeight);
             randomNumberDisplay.innerHTML = "Số tiền làaaaa: <span class='large-number'>" + randomMoney + "</span>";
@@ -115,16 +117,24 @@ function mapToHihi(money) {
     switch (money) {
         case "10,000 đồng":
         case "20,000 đồng":
+            var gifImage = document.getElementById("gifImage");
+            gifImage.src = "https://media.giphy.com/media/vBTxCPUwfC6ddBsTbs/giphy.gif";
             return "Đen thôi, Đỏ là RED";
         case "30,000 đồng":
         case "40,000 đồng":
         case "50,000 đồng":
+            var gifImage = document.getElementById("gifImage");
+            gifImage.src = "https://media.giphy.com/media/P4GxohAK1vaKI2yH8E/giphy.gif";
             return "Zữ zậy shaooo";
         case "60,000 đồng":
         case "70,000 đồng":
         case "80,000 đồng":
+            var gifImage = document.getElementById("gifImage");
+            gifImage.src = "https://media.giphy.com/media/3S13KRy5AzPScqliki/giphy.gif";
             return "Khó vậy cũng làm đượccc";
         case "90,000 đồng":
+            var gifImage = document.getElementById("gifImage");
+            gifImage.src = "https://media.giphy.com/media/boLwZ1VvxuijmfbIYD/giphy.gif";
             return "Cho Mẫn cái bình oxi";
         default:
             return "";
