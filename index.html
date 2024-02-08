@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Random Money Generator with Animated Result</title>
+<title>Lì xì đeeeeee</title>
 <style>
     body, html {
   height: 100%;
@@ -30,14 +30,19 @@
         font-size: 36px;
         font-weight: bold;
     }
+    .hihi {
+        font-size: 18px;
+        font-style: italic;
+    }
 </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>Random Money Generator with Animated Result</h2>
-    <button onclick="startRandomAnimation()" id="generateButton">Generate Random Money</button>
+    <h2>Mẫn sẽ lì xì cho bạn</h2>
+    <button onclick="startRandomAnimation()" id="generateButton">Chơi đe bạn eyyy</button>
     <p id="randomNumber"></p>
+    <p id="hihiText" class="hihi"></p> <!-- Thêm một phần tử p để hiển thị "hihi" -->
 </div>
 
 <script>
@@ -55,6 +60,7 @@ var originalMoneyWithWeights = [
 
 function startRandomAnimation() {
     var randomNumberDisplay = document.getElementById("randomNumber");
+    var hihiText = document.getElementById("hihiText");
     
     var moneyWithWeights = originalMoneyWithWeights.slice(); // Sao chép danh sách ban đầu
     
@@ -73,10 +79,14 @@ function startRandomAnimation() {
         if (elapsedTime >= animationTime) {
             clearInterval(intervalId);
             var randomMoney = weightedRandom(moneyWithWeights, totalWeight);
-            randomNumberDisplay.innerHTML = "Random Money: <span class='large-number'>" + randomMoney + "</span>";
+            randomNumberDisplay.innerHTML = "Số tiền làaaaa: <span class='large-number'>" + randomMoney + "</span>";
+            var hihi = mapToHihi(randomMoney);
+            hihiText.innerText = hihi; // Hiển thị hihi tương ứng
         } else {
             var randomMoney = weightedRandom(moneyWithWeights, totalWeight);
-            randomNumberDisplay.innerHTML = "Random Money: <span class='large-number'>" + randomMoney + "</span>";
+            randomNumberDisplay.innerHTML = "Số tiền làaaaa: <span class='large-number'>" + randomMoney + "</span>";
+            var hihi = mapToHihi(randomMoney);
+            hihiText.innerText = ""; // Ẩn hihi trong quá trình chạy hiệu ứng
         }
     }, 100);
 }
@@ -93,6 +103,26 @@ function weightedRandom(items, totalWeight) {
             return selectedMoney;
         }
         rand -= items[i].weight;
+    }
+}
+
+function mapToHihi(money) {
+    switch (money) {
+        case "10,000 đồng":
+        case "20,000 đồng":
+            return "Đen thôi, Đỏ là RED";
+        case "30,000 đồng":
+        case "40,000 đồng":
+        case "50,000 đồng":
+            return "Zữ zậy shaooo";
+        case "60,000 đồng":
+        case "70,000 đồng":
+        case "80,000 đồng":
+            return "Khó vậy cũng làm đượccc";
+        case "90,000 đồng":
+            return "Cho Mẫn cái bình oxi";
+        default:
+            return "";
     }
 }
 </script>
