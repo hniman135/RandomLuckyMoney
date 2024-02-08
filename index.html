@@ -43,7 +43,7 @@
     <button onclick="startRandomAnimation()" id="generateButton">Chơi đe bạn eyyy</button>
     <p id="randomNumber"></p>
     <p id="hihiText" class="hihi"></p> <!-- Thêm một phần tử p để hiển thị "hihi" -->
-    <img id="gifImage" src="" alt="GIF">
+    <img id="gifImage" src="https://media.giphy.com/media/GeimqsH0TLDt4tScGw/giphy.gif" alt="GIF">
 </div>
 
 <script>
@@ -51,8 +51,8 @@ var originalMoneyWithWeights = [
     {money: "10,000 đồng", weight: 30},
     {money: "20,000 đồng", weight: 25},
     {money: "30,000 đồng", weight: 20},
-    {money: "40,000 đồng", weight: 20},
-    {money: "50,000 đồng", weight: 10},
+    {money: "40,000 đồng", weight: 15},
+    {money: "50,000 đồng", weight: 6},
     {money: "60,000 đồng", weight: 5},
     {money: "70,000 đồng", weight: 4},
     {money: "80,000 đồng", weight: 2},
@@ -63,16 +63,26 @@ var tempMoneyWithWeights = [
     {money: "20,000 đồng", weight: 2},
     {money: "30,000 đồng", weight: 4},
     {money: "40,000 đồng", weight: 5},
-    {money: "50,000 đồng", weight: 10},
-    {money: "60,000 đồng", weight: 20},
+    {money: "50,000 đồng", weight: 6},
+    {money: "60,000 đồng", weight: 15},
     {money: "70,000 đồng", weight: 20},
     {money: "80,000 đồng", weight: 25},
     {money: "90,000 đồng", weight: 30}
 ];
 
+function resetWeights() {
+    // Lặp qua mảng tempMoneyWithWeights và đặt lại trọng số cho từng phần tử
+    for (var i = 0; i < tempMoneyWithWeights.length; i++) {
+        tempMoneyWithWeights[i].weight = originalMoneyWithWeights[i].weight;
+    }
+}
+
 function startRandomAnimation() {
     var randomNumberDisplay = document.getElementById("randomNumber");
     var hihiText = document.getElementById("hihiText");
+    
+    // Reset trọng số về giá trị ban đầu
+    resetWeights();
     
     // Sử dụng mảng tempMoneyWithWeights cho hiệu ứng
     var moneyWithWeights = tempMoneyWithWeights.slice();
@@ -93,7 +103,6 @@ function startRandomAnimation() {
             randomNumberDisplay.innerHTML = "Số tiền làaaaa: <span class='large-number'>" + randomMoney + "</span>";
             var hihi = mapToHihi(randomMoney);
             hihiText.innerText = hihi;
-            
         } else {
             var randomMoney = weightedRandom(moneyWithWeights, totalWeight);
             randomNumberDisplay.innerHTML = "Số tiền làaaaa: <span class='large-number'>" + randomMoney + "</span>";
